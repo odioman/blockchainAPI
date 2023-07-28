@@ -1,0 +1,9 @@
+* {
+    font-family: 'Lato', sans-serif;
+    background: black;
+    color: white;
+}
+
+.input {
+    border-color: white;
+}
