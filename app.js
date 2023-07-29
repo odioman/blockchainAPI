@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const name = document.querySelector('.name');
 const symbol = document.querySelector('.symbol');
 const rank = document.querySelector('.rank');
@@ -15,9 +17,9 @@ submit.addEventListener('click', (event) => {
 
 async function fetchChain(userInput) {
     try {
-        const response = await fetch(
-        "https://api.coinstats.app/public/v1/coins?skip=0&limit=5&currency=USD"
-        );
+        const response = await axios.get(
+        "https://api.coinstats.app/public/v1/coins?skip=0&limit=2000&currency=USD"
+        )
         console.log(response);
         const data = await response.json()
         console.log(data)
@@ -29,9 +31,9 @@ async function fetchChain(userInput) {
 
 
 function displayAPI(data, userInput) {
-   name.textContent = 'Name: ' + data[userInput].name;
-   symbol.textContent = 'Symbol: ' + data[userInput].symbol
-   rank.textContent = 'Rank: ' + data[userInput].rank;
-   priceUSD.textContent = 'Price (USD): ' + data[userInput].price
-   priceChange1D.textContent = 'Price Change 1 Day: ' + data[userInput].priceChange1d 
+   name.textContent = 'Name: ' + data[userInput - 1].name
+   symbol.textContent = 'Symbol: ' + data[userInput - 1].symbol
+   rank.textContent = 'Rank: ' + data[userInput - 1].rank;
+   priceUSD.textContent = 'Price (USD): ' + data[userInput - 1].price
+   priceChange1D.textContent = 'Price Change 1 Day: ' + data[userInput - 1].priceChange1d 
 }
